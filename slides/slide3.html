@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>“给荔娃”的成长画像</title>
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    }
+    .ppt-slide {
+      width: 1280px;
+      height: 720px;
+      background: radial-gradient(circle, #fff5e9, #ffe8cc);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+      box-sizing: border-box;
+    }
+    .title {
+      font-size: 52px;
+      font-weight: bold;
+      color: #E77D22;
+      margin-top: 40px;
+      margin-bottom: 30px;
+      animation: fadeIn 1s ease-out;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+    .content-grid {
+      position: relative;
+      width: 1000px;
+      height: 480px;
+    }
+    .trait-item {
+      position: absolute;
+      width: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      opacity: 0;
+      animation: slideUp 0.8s ease-out forwards;
+    }
+    .trait-item .icon {
+      font-size: 80px;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .trait-item h3 {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 10px 0 8px 0;
+    }
+    .trait-item p {
+      font-size: 16px;
+      color: #5f4e3a;
+      line-height: 1.5;
+      margin: 0;
+      padding: 0 10px;
+    }
+    /* Positioning items */
+    .trait-1 { /* 自信勇敢 */
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      animation-delay: 0.2s;
+    }
+    .trait-1 h3 { color: #f39c12; }
+
+    .trait-2 { /* 积极主动 */
+      top: 150px;
+      left: 100px;
+      animation-delay: 0.4s;
+    }
+    .trait-2 h3 { color: #f1c40f; }
+
+    .trait-3 { /* 乐观向上 */
+      top: 150px;
+      right: 100px;
+      animation-delay: 0.6s;
+    }
+    .trait-3 h3 { color: #f39c12; }
+
+    .trait-4 { /* 有爱心 */
+      top: 300px;
+      left: 240px;
+      animation-delay: 0.8s;
+    }
+    .trait-4 h3 { color: #e74c3c; }
+
+    .trait-5 { /* 懂合作 */
+      top: 300px;
+      right: 240px;
+      animation-delay: 1.0s;
+    }
+    .trait-5 h3 { color: #e67e22; }
+  </style>
+</head>
+<body>
+  <div class="ppt-slide">
+    <h1 class="title">“给荔娃”的成长画像</h1>
+    <div class="content-grid">
+      <div class="trait-item trait-1">
+        <span class="icon">💪</span>
+        <h3>自信勇敢</h3>
+        <p>相信自己的能力，勇敢表达想法</p>
+      </div>
+      <div class="trait-item trait-2">
+        <span class="icon">🌟</span>
+        <h3>积极主动</h3>
+        <p>勇于尝试，敢于挑战，面对困难不退缩</p>
+      </div>
+      <div class="trait-item trait-3">
+        <span class="icon">😊</span>
+        <h3>乐观向上</h3>
+        <p>保持阳光心态，用微笑面对每一天</p>
+      </div>
+      <div class="trait-item trait-4">
+        <span class="icon">❤️</span>
+        <h3>有爱心</h3>
+        <p>关爱同学，尊敬师长，温暖他人</p>
+      </div>
+      <div class="trait-item trait-5">
+        <span class="icon">🤝</span>
+        <h3>懂合作</h3>
+        <p>团结同学，乐于分享，共同进步</p>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+</html>

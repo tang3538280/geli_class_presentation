@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>"给荔树"激励体系</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #e8f5e9;
+      font-family: 'Noto Sans SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    .ppt-container {
+      width: 1280px;
+      height: 720px;
+      background: linear-gradient(135deg, #f1f8e9 0%, #e8f5e9 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 50px;
+      box-sizing: border-box;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    @keyframes growTreeTrunk {
+      from { height: 0; }
+      to { height: 200px; }
+    }
+    
+    @keyframes growTreeLeaves {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes iconBounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+
+    /* Header */
+    .header {
+      text-align: center;
+      color: #388e3c;
+      animation: fadeIn 1s ease-out;
+    }
+    .header h1 {
+      font-size: 48px;
+      margin: 0;
+      font-weight: 700;
+    }
+    .header p {
+      font-size: 24px;
+      margin: 5px 0 0;
+      color: #66bb6a;
+      font-weight: 500;
+    }
+
+    /* Main Content */
+    .main-content {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 20px;
+    }
+
+    /* Cards */
+    .card {
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      padding: 20px 25px;
+      width: 30%;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+      border: 1px solid #c8e6c9;
+      animation: slideUp 0.8s ease-out forwards;
+    }
+
+    .card h2 {
+      font-size: 22px;
+      color: #388e3c;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #a5d6a7;
+      padding-bottom: 10px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .card li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 18px;
+      font-size: 16px;
+      color: #333;
+      opacity: 0;
+      animation: slideUp 0.5s ease-out forwards;
+    }
+
+    .card li:last-child {
+      margin-bottom: 0;
+    }
+    
+    #left-card li:nth-child(1) { animation-delay: 0.5s; }
+    #left-card li:nth-child(2) { animation-delay: 0.7s; }
+    #left-card li:nth-child(3) { animation-delay: 0.9s; }
+    #left-card li:nth-child(4) { animation-delay: 1.1s; }
+
+    #right-card li:nth-child(1) { animation-delay: 0.6s; }
+    #right-card li:nth-child(2) { animation-delay: 0.8s; }
+    #right-card li:nth-child(3) { animation-delay: 1.0s; }
+    #right-card li:nth-child(4) { animation-delay: 1.2s; }
+
+    .card .icon {
+      font-size: 28px;
+      margin-right: 15px;
+      width: 30px;
+      text-align: center;
+    }
+    
+    .card .text-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card .text-content strong {
+      font-weight: 500;
+      color: #1b5e20;
+    }
+
+    .card .text-content span {
+      font-size: 14px;
+      color: #555;
+    }
+    
+    #right-card .text-content span {
+        color: #ef5350;
+        font-weight: 500;
+    }
+
+    /* Center Tree */
+    .center-tree-container {
+      width: 34%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: 20px;
+    }
+    
+    .tree {
+        position: relative;
+        width: 150px;
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+
+    .trunk {
+        width: 25px;
+        height: 200px;
+        background: #8d6e63;
+        border-radius: 10px 10px 0 0;
+        animation: growTreeTrunk 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        animation-delay: 0.2s;
+    }
+
+    .leaves {
+        position: absolute;
+        top: 0;
+        width: 150px;
+        height: 180px;
+    }
+
+    .leaf {
+        position: absolute;
+        background-color: #66bb6a;
+        border-radius: 50%;
+        opacity: 0;
+        animation: growTreeLeaves 0.8s ease-out forwards;
+    }
+
+    .leaf1 { width: 100px; height: 100px; top: 0; left: 25px; background-color: #4caf50; animation-delay: 1s; }
+    .leaf2 { width: 80px; height: 80px; top: 50px; left: -10px; background-color: #81c784; animation-delay: 1.2s; }
+    .leaf3 { width: 80px; height: 80px; top: 50px; right: -10px; background-color: #a5d6a7; animation-delay: 1.4s; }
+    .leaf4 { width: 60px; height: 60px; top: 30px; left: 0; background-color: #689f38; animation-delay: 1.6s; }
+    .leaf5 { width: 60px; height: 60px; top: 30px; right: 0; background-color: #7cb342; animation-delay: 1.8s; }
+
+    .tree-text {
+        text-align: center;
+        margin-top: 20px;
+        animation: fadeIn 1s ease-out 2s forwards;
+        opacity: 0;
+    }
+    .tree-text h3 {
+        font-size: 18px;
+        color: #333;
+        margin: 0;
+        font-weight: 500;
+        letter-spacing: 1px;
+    }
+    .tree-text p {
+        font-size: 14px;
+        color: #757575;
+        margin: 5px 0 0;
+    }
+
+    /* Footer */
+    .footer {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px 0;
+      margin-top: 20px;
+    }
+
+    .footer-item {
+      text-align: center;
+      color: #388e3c;
+      opacity: 0;
+      animation: slideUp 0.8s ease-out forwards;
+    }
+    
+    .footer-item:nth-child(1) { animation-delay: 1.5s; }
+    .footer-item:nth-child(2) { animation-delay: 1.7s; }
+    .footer-item:nth-child(3) { animation-delay: 1.9s; }
+
+
+    .footer-icon {
+      font-size: 40px;
+      margin-bottom: 5px;
+      display: inline-block;
+      animation: iconBounce 2s infinite ease-in-out;
+    }
+    
+    .footer-item:nth-child(1) .footer-icon { animation-delay: 1.5s; }
+    .footer-item:nth-child(2) .footer-icon { animation-delay: 1.7s; }
+    .footer-item:nth-child(3) .footer-icon { animation-delay: 1.9s; }
+
+    .footer p {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="ppt-container">
+    <header class="header">
+      <h1>"给荔树"激励体系</h1>
+      <p>让成长看得见</p>
+    </header>
+
+    <main class="main-content">
+      <div class="card" id="left-card">
+        <h2>获得"荔枝"的方式</h2>
+        <ul>
+          <li>
+            <span class="icon">✏️</span>
+            <div class="text-content">
+              <strong>学习表现</strong>
+              <span>认真作业、积极发言、成绩进步</span>
+            </div>
+          </li>
+          <li>
+            <span class="icon">🤝</span>
+            <div class="text-content">
+              <strong>品德行为</strong>
+              <span>帮助同学、拾金不昧、礼貌待人</span>
+            </div>
+          </li>
+          <li>
+            <span class="icon">💪</span>
+            <div class="text-content">
+              <strong>能力展示</strong>
+              <span>参与活动、发挥特长、勇于挑战</span>
+            </div>
+          </li>
+          <li>
+            <span class="icon">🎯</span>
+            <div class="text-content">
+              <strong>目标达成</strong>
+              <span>完成个人小目标、班级任务</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="center-tree-container">
+        <div class="tree">
+            <div class="leaves">
+                <div class="leaf leaf1"></div>
+                <div class="leaf leaf2"></div>
+                <div class="leaf leaf3"></div>
+                <div class="leaf leaf4"></div>
+                <div class="leaf leaf5"></div>
+            </div>
+            <div class="trunk"></div>
+        </div>
+        <div class="tree-text">
+            <h3>GROWTH MINDSET</h3>
+            <p>INTELLIGENCE CAN BE DEVELOPED</p>
+        </div>
+      </div>
+
+      <div class="card" id="right-card">
+        <h2>激励兑换系统</h2>
+        <ul>
+          <li>
+            <span class="icon">🥉</span>
+            <div class="text-content">
+              <strong>获得"每周之星"称号</strong>
+              <span>需要 10 个荔枝</span>
+            </div>
+          </li>
+          <li>
+            <span class="icon">🥈</span>
+            <div class="text-content">
+              <strong>当一天"小老师"特权</strong>
+              <span>需要 20 个荔枝</span>
+            </div>
+          </li>
+          <li>
+            <span class="icon">🥇</span>
+            <div class="text-content">
+              <strong>优先选择座位权</strong>
+              <span>需要 30 个荔枝</span>
+            </div>
+          </li>
+          <li>
+            <span class="icon">🏆</span>
+            <div class="text-content">
+              <strong>获得"月度给荔娃"荣誉</strong>
+              <span>需要 50 个荔枝</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-item">
+        <span class="footer-icon">🌳</span>
+        <p>可视化展示</p>
+      </div>
+      <div class="footer-item">
+        <span class="footer-icon">💡</span>
+        <p>正向强化</p>
+      </div>
+      <div class="footer-item">
+        <span class="footer-icon">🚀</span>
+        <p>持续成长</p>
+      </div>
+    </footer>
+  </div>
+
+
+</body>
+</html>

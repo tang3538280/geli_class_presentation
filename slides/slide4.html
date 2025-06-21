@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>给荔班 - 班级文化体系展示</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap');
+
+    :root {
+      --lychee-red: #d83a56;
+      --lychee-green: #58b486;
+      --lychee-bg: #fff5e1;
+      --text-dark: #333333;
+      --text-light: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.8);
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
+      font-family: 'Noto Sans SC', sans-serif;
+    }
+
+    .ppt-container {
+      width: 1280px;
+      height: 720px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--lychee-bg), #ffdcb3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .slide {
+      width: 100%;
+      height: 100%;
+      padding: 40px 60px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--text-dark);
+    }
+
+    .main-title {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--lychee-red);
+      margin-bottom: 30px;
+      animation: fadeInDown 1s ease-out forwards;
+    }
+
+    .section {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: stretch;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 25px rgba(216, 58, 86, 0.2);
+    }
+
+    .card-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--lychee-red);
+      margin-bottom: 15px;
+    }
+
+    /* Identity Section */
+    .identity-section {
+      height: 45%;
+    }
+    
+    .identity-section .card {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+    .identity-section .card:nth-child(1) { animation-delay: 0.5s; }
+    .identity-section .card:nth-child(2) { animation-delay: 0.7s; flex-grow: 1; margin: 0 20px;}
+    .identity-section .card:nth-child(3) { animation-delay: 0.9s; }
+
+    /* Logo CSS */
+    .logo-container {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      animation: rotateIn 1.5s 1s ease-out forwards;
+    }
+    .lychee-body {
+      width: 100px;
+      height: 100px;
+      background-color: var(--lychee-red);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      position: absolute;
+      bottom: 0;
+      left: 10px;
+      background-image: radial-gradient(circle at 30% 30%, #f76e89, var(--lychee-red));
+    }
+    .lychee-stem {
+      width: 8px;
+      height: 30px;
+      background-color: #6D4C41;
+      position: absolute;
+      top: 0;
+      left: 56px;
+      border-radius: 4px;
+    }
+    .lychee-leaf {
+      width: 40px;
+      height: 20px;
+      background-color: var(--lychee-green);
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      border-radius: 50% 0;
+      transform: rotate(-20deg);
+    }
+    .lychee-face {
+      position: absolute;
+      top: 45px;
+      left: 25px;
+      width: 50px;
+      height: 30px;
+    }
+    .lychee-eye {
+      width: 8px;
+      height: 8px;
+      background: var(--text-dark);
+      border-radius: 50%;
+      position: absolute;
+    }
+    .lychee-eye.left { left: 5px; }
+    .lychee-eye.right { right: 5px; }
+    .lychee-smile {
+      width: 25px;
+      height: 12px;
+      border: 3px solid var(--text-dark);
+      border-top-color: transparent;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      border-radius: 0 0 50% 50% / 0 0 100% 100%;
+      position: absolute;
+      bottom: 0;
+      left: 12.5px;
+    }
+
+    /* Slogan CSS */
+    .slogan-main {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      white-space: nowrap;
+      width: auto;
+    }
+    .slogan-extended {
+      font-size: 18px;
+      color: #555;
+      margin-top: 10px;
+      opacity: 1;
+    }
+    
+    /* Mascot CSS */
+    .mascot-container {
+      width: 150px;
+      height: 150px;
+      opacity: 0;
+      animation: bounceIn 1s 1.7s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .mascot-image {
+      width: 120px;
+      height: 120px;
+      background: var(--lychee-red);
+      border-radius: 50%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .mascot-image::before { /* Leaf */
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 30px;
+      width: 50px;
+      height: 25px;
+      background: var(--lychee-green);
+      border-radius: 50% 0;
+      transform: rotate(-30deg);
+    }
+    .mascot-image::after { /* Stem */
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 55px;
+      width: 10px;
+      height: 25px;
+      background: #8D6E63;
+      border-radius: 5px;
+    }
+    .mascot-face {
+        position: relative;
+        width: 60px;
+        height: 40px;
+        top: 10px;
+    }
+    .mascot-eye {
+        width: 12px;
+        height: 12px;
+        background: white;
+        border: 2px solid #333;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+    }
+    .mascot-eye::after { /* pupil */
+        content: '';
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: #333;
+        border-radius: 50%;
+        top: 3px;
+        left: 3px;
+    }
+    .mascot-eye.left { left: 0; }
+    .mascot-eye.right { right: 0; }
+    .mascot-mouth {
+        width: 20px;
+        height: 10px;
+        background: #9d2b41;
+        border-radius: 0 0 20px 20px;
+        position: absolute;
+        bottom: 0;
+        left: calc(50% - 10px);
+    }
+
+    .mascot-name {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    /* Environment Section */
+    .environment-section {
+      height: 35%;
+    }
+    .environment-section .card {
+      width: 30%;
+      opacity: 0;
+      transform: translateX(-50px);
+      animation: slideInLeft 0.8s ease-out forwards;
+    }
+    .environment-section .card:nth-child(1) { animation-delay: 2.2s; }
+    .environment-section .card:nth-child(2) { animation-delay: 2.4s; }
+    .environment-section .card:nth-child(3) { animation-delay: 2.6s; }
+
+    .env-icon {
+      font-size: 60px;
+      margin-bottom: 15px;
+      line-height: 1;
+    }
+
+    /* Footer */
+    .footer-philosophy {
+      margin-top: auto;
+      font-size: 26px;
+      font-weight: bold;
+      color: var(--text-dark);
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 15px;
+      border-top: 3px solid var(--lychee-green);
+      opacity: 0;
+      animation: fadeInUp 1s 3.0s ease-out forwards;
+    }
+    .footer-philosophy span {
+        color: var(--lychee-red);
+        font-weight: 700;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes rotateIn {
+      from { opacity: 0; transform: rotate(-180deg) scale(0.5); }
+      to { opacity: 1; transform: rotate(0deg) scale(1); }
+    }
+    @keyframes typewriter {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: var(--lychee-red); }
+    }
+    @keyframes bounceIn {
+      from { opacity: 0; transform: scale(0.3); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="ppt-container">
+    <div class="slide">
+      <h1 class="main-title">班级文化体系 - 我们的文化标识</h1>
+
+      <div class="section identity-section">
+        <div class="card">
+          <h3 class="card-title">班级Logo</h3>
+          <div class="logo-container">
+            <div class="lychee-leaf"></div>
+            <div class="lychee-stem"></div>
+            <div class="lychee-body">
+              <div class="lychee-face">
+                <div class="lychee-eye left"></div>
+                <div class="lychee-eye right"></div>
+                <div class="lychee-smile"></div>
+              </div>
+            </div>
+          </div>
+          <p style="margin-top: 10px; font-size: 16px;">笑脸荔枝设计</p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">班级口号</h3>
+          <p class="slogan-main">今天我给荔，明天我给力！</p>
+          <div class="slogan-extended">
+            <p>"人人都是鼓励家"</p>
+            <p>"每天一件给荔事"</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">班级吉祥物</h3>
+          <div class="mascot-container">
+            <div class="mascot-image">
+                <div class="mascot-face">
+                    <div class="mascot-eye left"></div>
+                    <div class="mascot-eye right"></div>
+                    <div class="mascot-mouth"></div>
+                </div>
+            </div>
+            <p class="mascot-name">"荔荔"</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section environment-section">
+        <div class="card">
+          <div class="env-icon">🌳</div>
+          <h3 class="card-title">给荔树</h3>
+          <p>表扬奖励展示墙</p>
+        </div>
+        <div class="card">
+          <div class="env-icon">💝</div>
+          <h3 class="card-title">给荔心愿墙</h3>
+          <p>目标与梦想展示区</p>
+        </div>
+        <div class="card">
+          <div class="env-icon">😊</div>
+          <h3 class="card-title">给荔笑脸墙</h3>
+          <p>快乐瞬间照片区</p>
+        </div>
+      </div>
+
+      <div class="footer-philosophy">
+        让文化<span>"活"</span>起来，让环境<span>"说话"</span>
+      </div>
+
+    </div>
+  </div>
+
+
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>特色篇 - "给荔班"的精彩瞬间</title>
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes countUp {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    
+    @keyframes mascotFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    body {
+      width: 1280px;
+      height: 720px;
+      margin: 0 auto;
+      font-family: 'PingFang SC', 'Helvetica Neue', 'Microsoft YaHei', sans-serif;
+      background-color: #f8f9fa;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 30px 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .header {
+      text-align: center;
+      animation: fadeIn 1s ease-out;
+      position: relative;
+      padding-bottom: 20px;
+    }
+
+    .header h1 {
+      font-size: 36px;
+      color: #c73434;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .header p {
+      font-size: 18px;
+      color: #555;
+      margin-top: 8px;
+    }
+
+    .mascot {
+      position: absolute;
+      top: -10px;
+      right: 0;
+      width: 80px;
+      height: 80px;
+      animation: mascotFloat 3s ease-in-out infinite;
+    }
+    
+    .mascot-body {
+        width: 70px;
+        height: 70px;
+        background: radial-gradient(circle at 30% 30%, #ff7b7b, #d62828);
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        position: relative;
+        transform: rotate(15deg);
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .mascot-stem {
+        width: 6px;
+        height: 20px;
+        background-color: #55a630;
+        position: absolute;
+        top: -15px;
+        left: 32px;
+        border-radius: 3px;
+        transform: rotate(-20deg);
+    }
+    
+    .mascot-leaf {
+        width: 25px;
+        height: 12px;
+        background-color: #80b918;
+        border-radius: 50% 0;
+        position: absolute;
+        top: -10px;
+        left: 10px;
+        transform: rotate(20deg);
+    }
+
+    .main-grid {
+      flex-grow: 1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 25px;
+      padding: 10px 0;
+    }
+
+    .card {
+      border-radius: 20px;
+      padding: 25px 30px;
+      color: white;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+    
+    .card h3 {
+      font-size: 24px;
+      margin: 0 0 15px 0;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+    }
+
+    .card h3 span {
+        margin-right: 12px;
+        font-size: 28px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 5px;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    .card li {
+      font-size: 17px;
+      margin-bottom: 12px;
+      line-height: 1.6;
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .card li::before {
+      content: '+';
+      margin-right: 10px;
+      font-weight: bold;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Card specific styles */
+    .card-1 { background: #4a4e69; animation-delay: 0.1s; }
+    .card-2 { background: #4361ee; animation-delay: 0.2s; }
+    .card-3 { background: #008000; animation-delay: 0.3s; }
+    .card-4 { background: #d00000; animation-delay: 0.4s; }
+
+    /* Gradient backgrounds for cards that were supposed to have images */
+    .card-1 {
+        background: linear-gradient(135deg, #4a4e69, #22223b);
+    }
+    .card-2 {
+        background: linear-gradient(135deg, #4361ee, #3a0ca3);
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0 10px 0;
+      animation: fadeIn 1s 0.5s ease-out forwards;
+      opacity: 0;
+    }
+
+    .stats {
+      display: flex;
+      gap: 40px;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: baseline;
+      color: #333;
+      animation: countUp 0.8s 0.8s ease-out forwards;
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    .stat-item .number {
+      font-size: 48px;
+      font-weight: bold;
+      color: #c73434;
+      line-height: 1;
+    }
+
+    .stat-item .unit {
+      font-size: 20px;
+      font-weight: bold;
+      color: #c73434;
+      margin-left: 2px;
+    }
+
+    .stat-item .label {
+      font-size: 16px;
+      margin-left: 10px;
+      color: #555;
+    }
+
+    .motto {
+      font-size: 18px;
+      color: #6c757d;
+      font-style: italic;
+      font-weight: 500;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header class="header">
+      <h1>特色篇 - "给荔班"的精彩瞬间</h1>
+      <p>每一个瞬间，都是成长的足迹</p>
+      <div class="mascot">
+        <div class="mascot-stem"></div>
+        <div class="mascot-leaf"></div>
+        <div class="mascot-body"></div>
+      </div>
+    </header>
+
+    <main class="main-grid">
+      <div class="card card-1">
+        <h3><span>🎨</span>视觉文化展示</h3>
+        <ul>
+          <li>班级Logo设计：笑脸荔枝，温暖可爱</li>
+          <li>环境布置：给荔树、心愿墙、笑脸墙</li>
+          <li>文化标识：班徽、班旗、专属标语</li>
+        </ul>
+      </div>
+
+      <div class="card card-2">
+        <h3><span>🎭</span>活动文化剪影</h3>
+        <ul>
+          <li>"给荔"主题班会：我是鼓励家、成长的烦恼</li>
+          <li>特色节日：感恩荔节、丰收荔节</li>
+          <li>亲子活动：励志故事分享、趣味运动会</li>
+        </ul>
+      </div>
+
+      <div class="card card-3">
+        <h3><span>📊</span>制度文化实践</h3>
+        <ul>
+          <li>"给荔公约"执行效果显著</li>
+          <li>"给荔岗位"轮换成果丰硕</li>
+          <li>"给荔树"激励成效斐然</li>
+        </ul>
+      </div>
+
+      <div class="card card-4">
+        <h3><span>📖</span>成长故事集锦</h3>
+        <ul>
+          <li>学困生的华丽转身</li>
+          <li>内向孩子的自信绽放</li>
+          <li>团队合作的美好时光</li>
+        </ul>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="stats">
+        <div class="stat-item">
+          <span class="number">90</span>
+          <span class="unit">%</span>
+          <span class="label">班级凝聚力提升</span>
+        </div>
+        <div class="stat-item">
+          <span class="number">100</span>
+          <span class="unit">%</span>
+          <span class="label">学生参与度</span>
+        </div>
+      </div>
+      <div class="motto">
+        "每一份用心，都会开花结果"
+      </div>
+    </footer>
+  </div>
+
+
+
+</body>
+</html>

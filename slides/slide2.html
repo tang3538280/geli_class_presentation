@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>给荔班核心理念介绍</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f2f5;
+      font-family: 'Noto Sans SC', 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    }
+
+    .slide {
+      width: 1280px;
+      height: 720px;
+      background: linear-gradient(135deg, #fff9e6 0%, #ffe9e9 100%);
+      display: flex;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .left-panel {
+      width: 65%;
+      padding: 60px 50px 60px 70px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 35px;
+    }
+
+    .right-panel {
+      width: 35%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Animations */
+    @keyframes slideInFromLeft {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes fadeInSlideUp {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes gentleSway {
+      0% { transform: rotate(-4deg) translateY(0px); }
+      50% { transform: rotate(4deg) translateY(-10px); }
+      100% { transform: rotate(-4deg) translateY(0px); }
+    }
+
+    .title {
+      font-size: 56px;
+      font-weight: 700;
+      color: #D73434; /* Lychee Red */
+      margin: 0;
+      animation: slideInFromLeft 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    .philosophy {
+      animation: fadeInSlideUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
+      opacity: 0;
+    }
+
+    .philosophy p {
+      margin: 10px 0;
+      font-size: 20px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .philosophy .definition {
+      font-size: 24px;
+      font-weight: 500;
+      color: #E67E22;
+      background: #fff0d6;
+      padding: 8px 16px;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    .pillars {
+      display: flex;
+      gap: 25px;
+      margin-top: 10px;
+    }
+
+    .card {
+      flex: 1;
+      background-color: white;
+      padding: 25px 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+      text-align: center;
+      font-size: 18px;
+      font-weight: 500;
+      color: #555;
+      opacity: 0;
+      transform: scale(0.5);
+      animation: popIn 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+      border-top: 6px solid;
+    }
+
+    .card .icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+    
+    .card-1 { animation-delay: 0.6s; border-color: #8BC34A; /* Natural Green */ }
+    .card-2 { animation-delay: 0.8s; border-color: #FFC107; /* Warm Yellow */ }
+    .card-3 { animation-delay: 1.0s; border-color: #5DADE2; /* Blue for synergy */ }
+
+    .vision {
+      margin-top: 10px;
+      opacity: 0;
+      animation: fadeInSlideUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.3s forwards;
+    }
+
+    .vision h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #D73434;
+      margin: 0 0 10px 0;
+    }
+
+    .vision p {
+      font-size: 20px;
+      color: #444;
+      line-height: 1.7;
+      background: rgba(255,255,255,0.6);
+      padding: 15px;
+      border-radius: 8px;
+    }
+    
+    /* CSS Lychee Mascot */
+    .lychee-mascot {
+        width: 250px;
+        height: 250px;
+        position: relative;
+        animation: gentleSway 6s ease-in-out infinite;
+    }
+
+    .lychee-mascot::before { /* Body */
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 70% 30%, #ff8a8a, #d73434 80%);
+        border-radius: 55% 45% 50% 50% / 60% 60% 40% 40%;
+        box-shadow: inset -15px -15px 40px rgba(0,0,0,0.15);
+    }
+
+    .lychee-mascot::after { /* Stem and Leaf */
+        content: '';
+        position: absolute;
+        width: 25px;
+        height: 50px;
+        background: #6B4F2E; /* Stem color */
+        top: -30px;
+        left: 45%;
+        border-radius: 10px 10px 0 0;
+        transform: rotate(-15deg);
+    }
+    
+    .leaf {
+        position: absolute;
+        width: 120px;
+        height: 50px;
+        background: #8BC34A;
+        border-radius: 50% 0;
+        top: -40px;
+        left: 50%;
+        transform-origin: left bottom;
+        transform: rotate(20deg);
+        box-shadow: inset -5px -5px 15px rgba(0,0,0,0.1);
+    }
+
+    .right-panel::before { /* Background shape */
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: rgba(255, 220, 100, 0.2);
+      border-radius: 50%;
+      filter: blur(60px);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <div class="left-panel">
+      <h1 class="title">什么是“给荔班”？</h1>
+      
+      <div class="philosophy">
+        <p class="definition">“给荔” = 鼓励 + 励志 + Glee (快乐)</p>
+        <p><strong>教育哲学：</strong>以学生为本，激发潜能，促进全面发展。</p>
+        <p><strong>班级文化：</strong>营造一个充满鼓励、积极向上、快乐成长的学习家园。</p>
+      </div>
+      
+      <div class="pillars">
+        <div class="card card-1">
+          <div class="icon">🍀</div>
+          立德树人<br>德育为先
+        </div>
+        <div class="card card-2">
+          <div class="icon">🌟</div>
+          以学生为本<br>全面发展
+        </div>
+        <div class="card card-3">
+          <div class="icon">🤝</div>
+          家校协同<br>共育未来
+        </div>
+      </div>
+
+      <div class="vision">
+        <h2>班级愿景</h2>
+        <p>培养积极、乐观、自信、有爱心、懂合作的“给荔娃”。</p>
+      </div>
+    </div>
+    <div class="right-panel">
+       <div class="lychee-mascot">
+           <div class="leaf"></div>
+       </div>
+    </div>
+  </div>
+
+
+
+</body>
+</html>

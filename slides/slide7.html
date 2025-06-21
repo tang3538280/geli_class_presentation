@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>"给荔岗位"责任制介绍</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f2f5;
+      font-family: 'Noto Sans SC', sans-serif;
+    }
+
+    .slide {
+      width: 1280px;
+      height: 720px;
+      background: radial-gradient(circle at 10% 10%, rgba(255, 182, 193, 0.3), transparent 30%),
+                  radial-gradient(circle at 90% 90%, rgba(173, 216, 230, 0.2), transparent 40%),
+                  #F9F8FC;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 60px;
+      box-sizing: border-box;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .header {
+      text-align: center;
+      animation: fadeIn 1s ease-out;
+      margin-bottom: 20px; /* Reduced margin */
+    }
+
+    .header h1 {
+      font-size: 48px;
+      font-weight: 700;
+      color: #F27878;
+      margin: 0;
+    }
+
+    .header p {
+      font-size: 22px;
+      color: #555;
+      margin: 10px 0 0 0;
+    }
+
+    .content-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      margin-top: 20px;
+    }
+
+    .column {
+      width: 420px;
+    }
+
+    .section-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50%;
+      height: 4px;
+      background-color: #88D8D0;
+      border-radius: 2px;
+    }
+
+    .management-card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 18px 24px; /* Adjusted padding */
+      margin-bottom: 18px; /* Reduced margin */
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+      display: flex;
+      align-items: center;
+      animation: slideUp 0.6s ease-out forwards;
+      opacity: 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .management-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+    
+    .management-card:nth-child(2) { animation-delay: 0.2s; }
+    .management-card:nth-child(3) { animation-delay: 0.4s; }
+    .management-card:nth-child(4) { animation-delay: 0.6s; }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 20px;
+      flex-shrink: 0;
+    }
+
+    .icon-bg-blue { background-color: #EBF4FF; }
+    .icon-bg-yellow { background-color: #FFF8E1; }
+    .icon-bg-orange { background-color: #FFF0E6; }
+
+    .card-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .card-content h3 {
+      font-size: 20px;
+      font-weight: 500;
+      color: #333;
+      margin: 0 0 5px 0;
+    }
+
+    .card-content p {
+      font-size: 15px;
+      color: #666;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .education-value-item {
+      background: #FFFDF2;
+      border-radius: 12px;
+      padding: 18px 25px; /* Adjusted padding */
+      margin-bottom: 25px; /* Adjusted margin */
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      font-size: 18px;
+      font-weight: 500;
+      color: #5C523C;
+      border-left: 5px solid #FADF78;
+      animation: slideUp 0.6s ease-out forwards;
+      opacity: 0;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    
+    .education-value-item:hover {
+        transform: translateX(5px);
+        background-color: #FFFBEB;
+    }
+
+    .education-value-item:nth-child(2) { animation-delay: 0.3s; }
+    .education-value-item:nth-child(3) { animation-delay: 0.5s; }
+    .education-value-item:nth-child(4) { animation-delay: 0.7s; }
+
+    .central-element {
+      position: absolute;
+      left: 50%;
+      top: 52%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      animation: fadeIn 1s ease-out 0.8s forwards;
+      opacity: 0;
+    }
+
+    .central-circle {
+      width: 100px;
+      height: 100px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.5), 0 8px 25px rgba(0, 0, 0, 0.1);
+      margin-bottom: 10px;
+    }
+    
+    .central-circle svg {
+      width: 50px;
+      height: 50px;
+      color: #FADF78;
+    }
+
+    .central-element p {
+      font-size: 16px;
+      color: #555;
+      font-weight: 500;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <header class="header">
+      <h1>"给荔岗位" - 每个人都是班级小主人</h1>
+      <p>人人有事做，事事有人管，个个能成功</p>
+    </header>
+
+    <div class="content-wrapper">
+      <div class="column management-column">
+        <h2 class="section-title">管理机制</h2>
+        <div class="management-card">
+          <div class="card-icon icon-bg-blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#4A90E2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"></path><path d="M1 20v-6h6"></path><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"></path><path d="M20.49 15a9 9 0 0 1-14.85 3.36L1 14"></path></svg>
+          </div>
+          <div class="card-content">
+            <h3>轮换制度</h3>
+            <p>每月轮换, 人人有机会体验不同岗位, 发现自身潜力。</p>
+          </div>
+        </div>
+        <div class="management-card">
+          <div class="card-icon icon-bg-yellow">
+            <svg viewBox="0 0 24 24" fill="#FFC107" stroke="#FFC107" stroke-width="0"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </div>
+          <div class="card-content">
+            <h3>评价体系</h3>
+            <p>每周评选”给荔之星”, 基于同学互评和老师观察。</p>
+          </div>
+        </div>
+        <div class="management-card">
+          <div class="card-icon icon-bg-orange">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"></path><path d="M12 2v4"></path><path d="M12 20v2"></path><path d="M5 5l2 2"></path><path d="M17 17l2 2"></path><path d="M2 12h4"></path><path d="M18 12h4"></path><path d="M5 19l2-2"></path><path d="M17 7l2-2"></path></svg>
+            <svg viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="0" style="position: absolute; width: 24px; height: 24px; opacity: 0;"><path d="M19 4h-3V2h-2v2h-4V2H8v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"></path></svg>
+            <svg viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="0" style="position: absolute; width: 24px; height: 24px; opacity: 0;"><path d="M22,10H20V7c0-1.65-1.35-3-3-3h-1V2h-2v2h-4V2h-2v2h-1c-1.65,0-3,1.35-3,3v3H2v2h2v3c0,1.65,1.35,3,3,3h1v2h2v-2h4v2h2v-2h1c1.65,0,3-1.35,3-3v-3h2V10z M18,15c0,0.55-0.45,1-1,1H7c-0.55,0-1-0.45-1-1v-5c0-0.55,0.45-1,1-1h10c0.55,0,1,0.45,1,1V15z"></path></svg>
+            <svg viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5V4M12 20v-1.5M18.364 18.364L17 17M7 7l-1.364-1.364M12 2a3.5 3.5 0 00-3.5 3.5H12V2zM12 22a3.5 3.5 0 003.5-3.5H12V22zM2 12h1.5a3.5 3.5 0 00-3.5-3.5V12zM22 12h-1.5a3.5 3.5 0 003.5 3.5V12zM5.636 5.636L7 7M17 17l1.364 1.364M12 16a4 4 0 110-8 4 4 0 010 8z"></path></svg>
+             <svg viewBox="0 0 24 24" fill="none" stroke="#E59460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V2M15.48 3.9l1.06-1.84M8.52 3.9L7.46 2.06M18.82 9.22l2.12-.53M3.06 8.69l2.12.53M17 14h5M2 14h5M6 18H4v-4h2M18 18h2v-4h-2M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path><path d="M12 14a6 6 0 0 0-6 6h12a6 6 0 0 0-6-6Z"></path></svg>
+             <svg viewBox="0 0 24 24" fill="none" stroke="#D08C00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+             <svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+             <svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+             <svg viewBox="0 0 24 24" fill="#F5A623" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 Z"></path></svg>
+             <svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19.5c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path><path d="M10 13l2-3 2 3"></path><path d="M12 17v-4"></path></svg>
+             <svg viewBox="0 0 24 24" fill="#E59460" stroke="#E59460" stroke-width="0"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"></path></svg>
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
+             <svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+             <svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v12m6-6H6"></path></svg>
+             <svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+             <svg viewBox="0 0 24 24" fill="none" stroke="#E59460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M12 8v4l2 1"></path></svg>
+          </div>
+          <div class="card-content">
+            <h3>激励措施</h3>
+            <p>优秀岗位服务者获得荣誉证书、小礼品等特殊奖励。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column education-column">
+        <h2 class="section-title" style="--underline-color: #88D8D0;">教育价值</h2>
+        <div class="education-value-item">培养责任感</div>
+        <div class="education-value-item">锻炼能力</div>
+        <div class="education-value-item">增强归属感</div>
+      </div>
+      
+      <div class="central-element">
+        <div class="central-circle">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.36,16.45c-1.23,1.23-3.21,1.23-4.44,0l-1.06-1.06l-4.24,4.24l2.12,2.12l4.24-4.24l1.06,1.06c1.23,1.23,3.21,1.23,4.44,0l2.12-2.12L18.36,16.45z M17.66,3.96L16.24,5.38l4.24,4.24l1.41-1.41c1.23-1.23,1.23-3.21,0-4.44L17.66,3.96z M5.64,8.45c-1.23-1.23-1.23-3.21,0-4.44l3.18-3.18l4.24,4.24L8.82,9.3L5.64,8.45z"></path></svg>
+        </div>
+        <p>友谊小使者</p>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+</html>

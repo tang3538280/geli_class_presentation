@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>美好愿景</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #1a1a1a;
+      font-family: 'Noto Sans SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    .ppt-container {
+      width: 1280px;
+      height: 720px;
+      background: radial-gradient(ellipse at center, #5d4925 0%, #2c210f 70%, #1a1408 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      color: #fff;
+    }
+
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      background-color: rgba(255, 215, 0, 0.5);
+      border-radius: 50%;
+      animation: drift 20s infinite linear;
+      opacity: 0;
+    }
+
+    @keyframes drift {
+      from {
+        transform: translateY(0) translateX(0);
+        opacity: 0.7;
+      }
+      to {
+        transform: translateY(-800px) translateX(200px);
+        opacity: 0;
+      }
+    }
+
+    .particle:nth-child(1) { width: 5px; height: 5px; left: 10%; animation-duration: 15s; animation-delay: -2s; }
+    .particle:nth-child(2) { width: 3px; height: 3px; left: 25%; animation-duration: 22s; animation-delay: -5s; }
+    .particle:nth-child(3) { width: 6px; height: 6px; left: 40%; animation-duration: 18s; animation-delay: -1s; }
+    .particle:nth-child(4) { width: 4px; height: 4px; left: 55%; animation-duration: 25s; animation-delay: -8s; }
+    .particle:nth-child(5) { width: 5px; height: 5px; left: 70%; animation-duration: 16s; animation-delay: -3s; }
+    .particle:nth-child(6) { width: 3px; height: 3px; left: 85%; animation-duration: 21s; animation-delay: -6s; }
+    .particle:nth-child(7) { width: 4px; height: 4px; left: 5%; animation-duration: 19s; animation-delay: -10s; }
+    .particle:nth-child(8) { width: 6px; height: 6px; left: 95%; animation-duration: 24s; animation-delay: -4s; }
+
+    .content-wrapper {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 60px;
+        box-sizing: border-box;
+    }
+
+    .main-title {
+      font-size: 48px;
+      font-weight: 700;
+      color: #FFD700;
+      text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #E6A23C;
+      margin-bottom: 40px;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      border-radius: 15px;
+      padding: 25px;
+      flex: 1;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.2s; }
+    .card:nth-child(2) { animation-delay: 0.4s; }
+    .card:nth-child(3) { animation-delay: 0.6s; }
+
+    .card h3 {
+      font-size: 26px;
+      font-weight: 500;
+      color: #F5D98C;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 25px;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+      padding-bottom: 15px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .card li {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      font-size: 17px;
+      line-height: 1.6;
+      color: #E0E0E0;
+      opacity: 0;
+      animation: listItemFadeIn 0.8s forwards;
+    }
+    
+    .card:nth-child(1) li:nth-child(1) { animation-delay: 1.0s; }
+    .card:nth-child(1) li:nth-child(2) { animation-delay: 1.2s; }
+    .card:nth-child(1) li:nth-child(3) { animation-delay: 1.4s; }
+    .card:nth-child(1) li:nth-child(4) { animation-delay: 1.6s; }
+
+    .card:nth-child(2) li:nth-child(1) { animation-delay: 1.8s; }
+    .card:nth-child(2) li:nth-child(2) { animation-delay: 2.0s; }
+    .card:nth-child(2) li:nth-child(3) { animation-delay: 2.2s; }
+    .card:nth-child(2) li:nth-child(4) { animation-delay: 2.4s; }
+
+    .card:nth-child(3) li:nth-child(1) { animation-delay: 2.6s; }
+    .card:nth-child(3) li:nth-child(2) { animation-delay: 2.8s; }
+    .card:nth-child(3) li:nth-child(3) { animation-delay: 3.0s; }
+
+    .card li:last-child {
+      margin-bottom: 0;
+    }
+
+    .card li .icon {
+      font-size: 22px;
+      margin-right: 15px;
+      line-height: 1.6;
+      color: #FFD700;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: auto;
+      padding-bottom: 20px;
+    }
+
+    .conclusion {
+      font-size: 32px;
+      font-weight: 700;
+      color: #FFD700;
+      margin-bottom: 15px;
+      opacity: 0;
+      animation: conclusionShine 2s ease-in-out 3.5s forwards, pulse 2.5s infinite 3.5s;
+    }
+
+    .sub-conclusion {
+      font-size: 20px;
+      color: #ddd;
+      margin-bottom: 25px;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out 4.0s forwards;
+    }
+    
+    .thanks {
+      font-size: 16px;
+      color: #aaa;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out 4.5s forwards;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes listItemFadeIn {
+        from { opacity: 0; transform: translateX(-20px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes conclusionShine {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); text-shadow: 0 0 15px #FFD700, 0 0 25px #FFD700; }
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="ppt-container">
+    <div class="particles">
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="particle"></div><div class="particle"></div>
+    </div>
+    <div class="content-wrapper">
+      <h1 class="main-title">美好愿景 - 今天我给荔，明天我给力</h1>
+      
+      <div class="card-container">
+        <div class="card">
+          <h3>我们的愿景</h3>
+          <ul>
+            <li><span class="icon">🌱</span>让每个孩子都能在"给荔班"这个温暖的大家庭中快乐成长</li>
+            <li><span class="icon">⭐</span>让每个"给荔娃"都能成为积极、乐观、自信、有爱心的好少年</li>
+            <li><span class="icon">🏆</span>让每个家庭都能感受到教育的温度和孩子成长的喜悦</li>
+            <li><span class="icon">🌍</span>让"给荔"文化成为孩子们人生路上的精神财富</li>
+          </ul>
+        </div>
+        
+        <div class="card">
+          <h3>我们的承诺</h3>
+          <ul>
+            <li><span class="icon">💖</span>用爱心陪伴每一个孩子的成长</li>
+            <li><span class="icon">🔍</span>用慧眼发现每一个孩子的闪光点</li>
+            <li><span class="icon">🤝</span>用真诚构建和谐的家校关系</li>
+            <li><span class="icon">🌟</span>用专业引领孩子们走向美好未来</li>
+          </ul>
+        </div>
+        
+        <div class="card">
+          <h3>共同心愿</h3>
+          <ul>
+            <li><span class="icon">🤗</span>愿每个孩子都能在鼓励中自信成长</li>
+            <li><span class="icon">👨‍👩‍👧‍👦</span>愿每个家庭都能在合作中收获幸福</li>
+            <li><span class="icon">🏠</span>愿我们的"给荔班"成为最温馨的成长摇篮</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p class="conclusion">"今天我给荔，明天我给力"</p>
+        <p class="sub-conclusion">让我们携手同行，共同见证孩子们的精彩人生！</p>
+        <p class="thanks">感谢每一位家长的信任与支持，感谢每一个孩子带来的欢声笑语</p>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+</html>

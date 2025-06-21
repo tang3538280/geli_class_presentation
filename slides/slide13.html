@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学生转化案例详细展示</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
+      font-family: 'Noto Sans SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    .ppt-container {
+      width: 1280px;
+      height: 720px;
+      background-color: #fdfaf6;
+      display: flex;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .left-column {
+      flex: 55;
+      /* 关键修改：减少了上边距(padding-top) */
+      padding: 20px 40px 40px 40px; 
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .right-column {
+      flex: 45;
+      padding: 40px 35px;
+      box-sizing: border-box;
+      background-color: rgba(255, 249, 242, 0.7);
+      border-left: 1px solid #eee4da;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes number-pop {
+        0% { transform: scale(0.5); opacity: 0; }
+        70% { transform: scale(1.05); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes arrow-flow {
+      0% { opacity: 0; transform: translateX(-10px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Left Column Styles */
+    .left-column h1 {
+      font-size: 32px;
+      color: #6B4F4F;
+      margin: 0 0 10px 0;
+      font-weight: 700;
+      animation: slideUp 0.5s ease-out forwards;
+    }
+
+    .left-column .subtitle {
+      font-size: 16px;
+      color: #8E7171;
+      margin: 0 0 20px 0;
+      font-weight: 400;
+      opacity: 0;
+      animation: slideUp 0.5s ease-out 0.2s forwards;
+    }
+
+    .case-card {
+      background-color: #fff;
+      border: 1px solid #f3e9e0;
+      border-radius: 12px;
+      padding: 15px 20px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 15px rgba(187, 169, 153, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      animation: slideUp 0.6s ease-out forwards;
+    }
+    .case-card:nth-of-type(1) { animation-delay: 0.4s; }
+    .case-card:nth-of-type(2) { animation-delay: 0.6s; }
+    .case-card:nth-of-type(3) { animation-delay: 0.8s; }
+
+
+    .case-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(187, 169, 153, 0.15);
+    }
+
+    .case-card h2 {
+      font-size: 19px;
+      color: #8E6363;
+      margin: 0 0 10px 0;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+    }
+    
+    .case-card h2 span {
+        margin-right: 10px;
+        font-size: 22px;
+    }
+
+    .case-card p {
+      font-size: 14px;
+      color: #6B4F4F;
+      line-height: 1.6;
+      margin: 0 0 8px 0;
+    }
+    
+    .case-card p:last-child {
+        margin-bottom: 0;
+    }
+    
+    .case-card p strong {
+        color: #A27B7B;
+        font-weight: 500;
+    }
+
+    .process-flow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .process-step {
+      background-color: #fef5ec;
+      color: #B08968;
+      padding: 3px 8px;
+      border-radius: 16px;
+      font-size: 13px;
+      opacity: 0;
+      animation: arrow-flow 0.5s ease-out forwards;
+    }
+    
+    .process-arrow {
+      color: #D4A5A5;
+      font-weight: bold;
+      opacity: 0;
+      animation: arrow-flow 0.5s ease-out forwards;
+    }
+
+    .process-step:nth-of-type(1) { animation-delay: 1.0s; }
+    .process-arrow:nth-of-type(1) { animation-delay: 1.2s; }
+    .process-step:nth-of-type(2) { animation-delay: 1.4s; }
+    .process-arrow:nth-of-type(2) { animation-delay: 1.6s; }
+    .process-step:nth-of-type(3) { animation-delay: 1.8s; }
+
+
+    .highlight-tag {
+      display: inline-block;
+      background: linear-gradient(45deg, #FFC75F, #FF9671);
+      color: white;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-weight: 500;
+      margin-left: 8px;
+      box-shadow: 0 2px 8px rgba(255, 150, 113, 0.4);
+      transform: rotate(-2deg);
+    }
+    
+    /* Right Column Styles */
+    .right-section {
+        margin-bottom: 25px;
+        opacity: 0;
+        animation: slideUp 0.6s ease-out 0.5s forwards;
+    }
+    .right-section:last-child {
+        margin-bottom: 0;
+    }
+
+    .right-section h3 {
+      font-size: 20px;
+      color: #8E6363;
+      font-weight: 500;
+      padding-bottom: 8px;
+      margin: 0 0 15px 0;
+      border-bottom: 2px solid #EADCD1;
+      position: relative;
+    }
+    
+    .right-section h3::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 50px;
+        height: 2px;
+        background-color: #D4A5A5;
+    }
+
+    .philosophy-text {
+      font-size: 17px;
+      color: #6B4F4F;
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      border: 1px solid #f3e9e0;
+    }
+
+    .methods-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .methods-list li {
+      display: flex;
+      align-items: center;
+      font-size: 15px;
+      color: #6B4F4F;
+      margin-bottom: 12px;
+    }
+
+    .methods-list li .icon {
+      font-size: 22px;
+      margin-right: 15px;
+      width: 30px;
+      text-align: center;
+    }
+    .methods-list li .text strong {
+        display: block;
+        color: #8E7171;
+        font-weight: 500;
+    }
+    .methods-list li .text span {
+        font-size: 13px;
+        color: #A27B7B;
+    }
+
+    .effectiveness-container {
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .metric {
+      opacity: 0;
+      animation: number-pop 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.2s forwards;
+    }
+
+    .metric .value {
+      font-size: 56px;
+      font-weight: 700;
+      color: #FF7B54;
+    }
+    .metric .value sup {
+        font-size: 28px;
+    }
+
+    .metric .label {
+      font-size: 15px;
+      color: #8E7171;
+      margin-top: 5px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="ppt-container">
+    <div class="left-column">
+      <h1>学生转化案例</h1>
+      <p class="subtitle">没有教不好的孩子，只有不合适的方法</p>
+      
+      <div class="case-card">
+        <h2><span>📚</span>案例一：学习困难的小明</h2>
+        <p><strong>问题表现：</strong>注意力不集中，作业拖拉，成绩落后。</p>
+        <p><strong>转化过程：</strong>
+            <span class="process-flow">
+                <span class="process-step">个别辅导</span>
+                <span class="process-arrow">→</span>
+                <span class="process-step">兴趣激发</span>
+                <span class="process-arrow">→</span>
+                <span class="process-step">小组帮扶</span>
+            </span>
+        </p>
+        <p><strong>转化结果：</strong>从班级后三名到中等偏上，获得<span class="highlight-tag">进步之星</span>。</p>
+      </div>
+
+      <div class="case-card">
+        <h2><span>🤝</span>案例二：人际困扰的小红</h2>
+        <p><strong>问题表现：</strong>性格内向，不愿与同学交流，常常独处。</p>
+        <p><strong>转化过程：</strong>
+            <span class="process-flow">
+                <span class="process-step">心理疏导</span>
+                <span class="process-arrow">→</span>
+                <span class="process-step">友谊搭桥</span>
+                <span class="process-arrow">→</span>
+                <span class="process-step">特长展示</span>
+            </span>
+        </p>
+        <p><strong>转化结果：</strong>成为班级<span class="highlight-tag">友谊小使者</span>，人际关系融洽。</p>
+      </div>
+
+      <div class="case-card">
+        <h2><span>💪</span>案例三：行为偏差的小军</h2>
+        <p><strong>问题表现：</strong>课堂捣乱，不遵守纪律，影响他人学习。</p>
+        <p><strong>转化过程：</strong>
+            <span class="process-flow">
+                <span class="process-step">行为契约</span>
+                <span class="process-arrow">→</span>
+                <span class="process-step">责任承担</span>
+                <span class="process-arrow">→</span>
+                <span class="process-step">正面引导</span>
+            </span>
+        </p>
+        <p><strong>转化结果：</strong>担任<span class="highlight-tag">纪律小哨兵</span>，成为班级榜样。</p>
+      </div>
+    </div>
+
+    <div class="right-column">
+      <div class="right-section">
+        <h3>转化理念</h3>
+        <div class="philosophy-text">用爱心、耐心、智慧点亮每一个孩子</div>
+      </div>
+      
+      <div class="right-section">
+        <h3>转化方法总结</h3>
+        <ul class="methods-list">
+          <li>
+            <div class="icon">🔍</div>
+            <div class="text"><strong>深入了解：</strong><span>透过现象看本质</span></div>
+          </li>
+          <li>
+            <div class="icon">💖</div>
+            <div class="text"><strong>真诚关爱：</strong><span>用心温暖每颗心</span></div>
+          </li>
+          <li>
+            <div class="icon">🎯</div>
+            <div class="text"><strong>因材施教：</strong><span>个性化教育方案</span></div>
+          </li>
+          <li>
+            <div class="icon">🏆</div>
+            <div class="text"><strong>正面强化：</strong><span>及时肯定每一点进步</span></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="right-section">
+        <h3>转化成效</h3>
+        <div class="effectiveness-container">
+          <div class="metric">
+            <div class="value">100<sup>%</sup></div>
+            <div class="label">学生都有进步</div>
+          </div>
+          <div class="metric" style="animation-delay: 1.4s;">
+            <div class="value">90<sup>%</sup></div>
+            <div class="label">问题学生成功转化</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>今天我给荔，明天我给力——"给荔班"带班方略</title>
+  <style>
+    /* Global Styles */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
+      font-family: 'Helvetica Neue', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', 'Microsoft Yahei', sans-serif;
+    }
+
+    /* Keyframes for Animations */
+    @keyframes titleFlyIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-150px);
+      }
+      60% {
+        opacity: 1;
+        transform: translateY(20px);
+      }
+      80% {
+        transform: translateY(-10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes lycheeFadeInRotate {
+      from {
+        opacity: 0;
+        transform: scale(0.5) rotate(-45deg);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+    }
+    
+    @keyframes iconAppear {
+      from {
+        opacity: 0;
+        transform: scale(0.3);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Slide Container */
+    .slide {
+      width: 1280px;
+      height: 720px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #FFC107, #E91E63);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Text Content */
+    .content {
+      text-align: center;
+      z-index: 10;
+    }
+
+    .main-title {
+      font-size: 88px;
+      font-weight: bold;
+      letter-spacing: 4px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+      animation: titleFlyIn 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      opacity: 0;
+    }
+
+    .subtitle {
+      font-size: 48px;
+      margin-top: 20px;
+      font-weight: 300;
+      letter-spacing: 2px;
+      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1s ease-out 0.8s forwards;
+      opacity: 0;
+    }
+    
+    .divider {
+      width: 100px;
+      height: 4px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 2px;
+      margin: 40px auto;
+      animation: fadeIn 1s ease-out 1.2s forwards;
+      opacity: 0;
+    }
+
+    .info-container {
+      position: absolute;
+      bottom: 40px;
+      width: 100%;
+      text-align: center;
+      z-index: 10;
+    }
+    
+    .description {
+      font-size: 22px;
+      font-weight: 300;
+      animation: fadeIn 1s ease-out 1.5s forwards;
+      opacity: 0;
+    }
+    
+    .presenter-info {
+      font-size: 20px;
+      margin-top: 15px;
+      font-weight: 300;
+      animation: fadeIn 1s ease-out 1.8s forwards;
+      opacity: 0;
+    }
+
+    /* Decorative Elements */
+    .lychee {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      animation: lycheeFadeInRotate 1.5s ease-out 0.5s forwards;
+      opacity: 0;
+    }
+    
+    .lychee-body {
+      width: 100px;
+      height: 100px;
+      background-color: #E91E63;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      box-shadow: inset -5px -5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .lychee-leaf {
+      width: 80px;
+      height: 40px;
+      background-color: #4CAF50;
+      border-radius: 40px 0 40px 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: rotate(-30deg);
+    }
+
+    .lychee-1 {
+      top: 50px;
+      left: 80px;
+      transform: scale(0.8) rotate(15deg);
+      animation-delay: 1.2s;
+    }
+    
+    .lychee-2 {
+      bottom: 60px;
+      right: 100px;
+      transform: scale(1.1) rotate(-25deg);
+      animation-delay: 1.0s;
+    }
+
+    /* Abstract Education Icons */
+    .edu-icon {
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.15);
+        border-radius: 50%;
+        animation: iconAppear 1.2s ease-out forwards;
+        opacity: 0;
+    }
+
+    .icon-1 {
+        width: 150px;
+        height: 150px;
+        top: 20%;
+        right: 15%;
+        animation-delay: 1.8s;
+    }
+    .icon-2 {
+        width: 80px;
+        height: 80px;
+        bottom: 15%;
+        left: 20%;
+        animation-delay: 2.0s;
+    }
+    .icon-3 {
+        width: 50px;
+        height: 50px;
+        top: 60%;
+        right: 10%;
+        animation-delay: 2.2s;
+    }
+    .icon-4 {
+        width: 200px;
+        height: 200px;
+        bottom: -100px;
+        left: -100px;
+        animation-delay: 2.4s;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="slide">
+    <!-- Decorative Elements -->
+    <div class="edu-icon icon-1"></div>
+    <div class="edu-icon icon-2"></div>
+    <div class="edu-icon icon-3"></div>
+    <div class="edu-icon icon-4"></div>
+
+    <div class="lychee lychee-1">
+      <div class="lychee-leaf"></div>
+      <div class="lychee-body"></div>
+    </div>
+    <div class="lychee lychee-2">
+      <div class="lychee-leaf"></div>
+      <div class="lychee-body"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+      <h1 class="main-title">今天我给荔，明天我给力</h1>
+      <h2 class="subtitle">"给荔班"带班方略</h2>
+      <div class="divider"></div>
+    </div>
+    
+    <!-- Footer Info -->
+    <div class="info-container">
+        <p class="description">小学班主任专业发展与实践指南</p>
+        <p class="presenter-info">汇报人：[汤巧茹] | 时间：[汇报日期]</p>
+    </div>
+
+  </div>
+
+
+
+</body>
+</html>

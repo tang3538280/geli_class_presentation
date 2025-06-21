@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生发展指导详细介绍页面</title>
+    <style>
+        /* Reset and Base Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Main PPT Container */
+        .ppt-container {
+            width: 1280px;
+            height: 720px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px 50px;
+            box-sizing: border-box;
+        }
+
+        /* Header Styles */
+        .header {
+            text-align: center;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            color: #1a237e;
+            margin: 0;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            text-align: center;
+            margin-top: -10px;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .philosophy p {
+            font-size: 22px;
+            color: #3949ab;
+            background-color: rgba(255, 255, 255, 0.5);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* Main Content Area (Three Columns) */
+        .main-content {
+            display: flex;
+            justify-content: space-around;
+            gap: 30px;
+            flex-grow: 1;
+        }
+
+        .development-area {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInUp 0.8s ease-out forwards;
+        }
+
+        /* Animation Delays for Columns */
+        .development-area.learn { animation-delay: 0.5s; }
+        .development-area.health { animation-delay: 0.7s; }
+        .development-area.diverse { animation-delay: 0.9s; }
+
+        /* Column Specific Styles */
+        .development-area.learn { border-top: 8px solid #4FC3F7; }
+        .development-area.health { border-top: 8px solid #FFD54F; }
+        .development-area.diverse { border-top: 8px solid #F06292; }
+
+        .area-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .area-icon {
+            width: 48px;
+            height: 48px;
+            margin-right: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+        .learn .area-icon { background-color: #E1F5FE; }
+        .health .area-icon { background-color: #FFFDE7; }
+        .diverse .area-icon { background-color: #FCE4EC; }
+
+        .area-icon svg {
+            width: 28px;
+            height: 28px;
+        }
+        .learn .area-icon svg { fill: #03A9F4; }
+        .health .area-icon svg { fill: #FBC02D; }
+        .diverse .area-icon svg { fill: #EC407A; }
+
+        .area-header h3 {
+            font-size: 26px;
+            margin: 0;
+            font-weight: 600;
+        }
+        .learn h3 { color: #0288D1; }
+        .health h3 { color: #F9A825; }
+        .diverse h3 { color: #D81B60; }
+
+
+        .area-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .area-content li {
+            margin-bottom: 18px;
+            opacity: 0;
+            animation: fadeInItem 0.6s ease-out forwards;
+        }
+
+        /* Animation Delays for List Items */
+        .development-area.learn li:nth-child(1) { animation-delay: 1.0s; }
+        .development-area.learn li:nth-child(2) { animation-delay: 1.2s; }
+        .development-area.learn li:nth-child(3) { animation-delay: 1.4s; }
+
+        .development-area.health li:nth-child(1) { animation-delay: 1.2s; }
+        .development-area.health li:nth-child(2) { animation-delay: 1.4s; }
+        .development-area.health li:nth-child(3) { animation-delay: 1.6s; }
+        
+        .development-area.diverse li:nth-child(1) { animation-delay: 1.4s; }
+        .development-area.diverse li:nth-child(2) { animation-delay: 1.6s; }
+        .development-area.diverse li:nth-child(3) { animation-delay: 1.8s; }
+
+        .item-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 6px;
+        }
+
+        .item-details {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.5;
+            padding-left: 10px;
+            border-left: 2px solid #e0e0e0;
+        }
+        .learn .item-details { border-left-color: #B3E5FC; }
+        .health .item-details { border-left-color: #FFF59D; }
+        .diverse .item-details { border-left-color: #F8BBD0; }
+        
+        /* Footer Section */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            background: linear-gradient(90deg, #3d5afe, #7c4dff);
+            border-radius: 12px;
+            animation: pulseEmphasis 2.5s infinite ease-in-out, fadeIn 2s ease-out;
+            animation-delay: 2.0s;
+        }
+
+        .footer p {
+            font-size: 24px;
+            color: #ffffff;
+            margin: 0;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInItem {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes pulseEmphasis {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(61, 90, 254, 0.7); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(61, 90, 254, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(61, 90, 254, 0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="ppt-container">
+        <header class="header">
+            <h1>学生发展指导 - 每个孩子都能闪闪发光</h1>
+        </header>
+
+        <section class="philosophy">
+            <p>科学的"大成才观" - 人人皆可成才，过程比结果更重要</p>
+        </section>
+
+        <main class="main-content">
+            <!-- 学会学习篇 -->
+            <div class="development-area learn">
+                <div class="area-header">
+                    <div class="area-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20,6v13c0,0.55-0.45,1-1,1H6c-0.55,0-1-0.45-1-1V5c0-0.55,0.45-1,1-1h10L20,6z M18,8h-5V4H7v14h10V8z M13.5,10.5 C13.5,9.67,12.83,9,12,9s-1.5,0.67-1.5,1.5S11.17,12,12,12S13.5,11.33,13.5,10.5z M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10 c5.52,0,10-4.48,10-10S17.52,2,12,2z M12,20c-4.41,0-8-3.59-8-8s3.59-8,8-8s8,3.59,8,8S16.41,20,12,20z"></path></svg>
+                    </div>
+                    <h3>📖 学会学习篇</h3>
+                </div>
+                <div class="area-content">
+                    <ul>
+                        <li>
+                            <p class="item-title">培养良好学习习惯</p>
+                            <p class="item-details">正确坐姿、认真审题、独立思考</p>
+                        </li>
+                        <li>
+                            <p class="item-title">激发学习兴趣</p>
+                            <p class="item-details">知识竞赛、课本剧表演、主题探究</p>
+                        </li>
+                        <li>
+                            <p class="item-title">传授学习方法</p>
+                            <p class="item-details">思维导图、圈点批注、归纳总结</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 心理健康篇 -->
+            <div class="development-area health">
+                <div class="area-header">
+                    <div class="area-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12,21.35l-1.45-1.32C5.4,15.36,2,12.28,2,8.5C2,5.42,4.42,3,7.5,3c1.74,0,3.41,0.81,4.5,2.09C13.09,3.81,14.76,3,16.5,3 C19.58,3,22,5.42,22,8.5c0,3.78-3.4,6.86-8.55,11.54L12,21.35z"></path></svg>
+                    </div>
+                    <h3>💗 心理健康篇</h3>
+                </div>
+                <div class="area-content">
+                    <ul>
+                        <li>
+                            <p class="item-title">营造安全心理环境</p>
+                            <p class="item-details">被接纳、可表达、能求助</p>
+                        </li>
+                        <li>
+                            <p class="item-title">"给荔加油站"</p>
+                            <p class="item-details">情绪管理、挫折教育、自信培养</p>
+                        </li>
+                        <li>
+                            <p class="item-title">建立心理档案</p>
+                            <p class="item-details">观察记录、谈心疏导、专业支持</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 多元发展篇 -->
+            <div class="development-area diverse">
+                <div class="area-header">
+                    <div class="area-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21l-1.64-7.03L22,9.24l-7.19-0.61L12,2L9.19,8.63L2,9.24l5.46,4.73L5.82,21L12,17.27z"></path></svg>
+                    </div>
+                    <h3>🌟 多元发展篇</h3>
+                </div>
+                <div class="area-content">
+                    <ul>
+                        <li>
+                            <p class="item-title">班级活动平台</p>
+                            <p class="item-details">主题班会、才艺展示、读书分享</p>
+                        </li>
+                        <li>
+                            <p class="item-title">社会实践机会</p>
+                            <p class="item-details">志愿服务、社区活动、职业体验</p>
+                        </li>
+                        <li>
+                            <p class="item-title">家校合作成长</p>
+                            <p class="item-details">亲子活动、家长课堂、共同目标</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>因材施教，发现每个孩子的独特亮点</p>
+        </footer>
+    </div>
+
+
+
+
+</body>
+</html>
